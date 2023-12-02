@@ -2,6 +2,7 @@ package fr.jetdev.day2;
 
 import org.junit.Test;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GameTest {
@@ -67,6 +68,6 @@ public class GameTest {
         expected.addLeg(new Leg(0, 6, 3));
         expected.addLeg(new Leg(15, 14, 3));
 
-        assertEquals(expected, Game.fromString(generation));
+        assertTrue(expected.equals(Game.fromString(generation)));
     }
 }

@@ -2,6 +2,7 @@ package fr.jetdev.day2;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class GameResolver {
     private List<Game> games;
@@ -11,11 +12,28 @@ public class GameResolver {
     }
 
     public static GameResolver fromString(String given) {
-        return new GameResolver();
+        String trimmedGiven = given.trim();
+        String[] gameStrings = trimmedGiven.split("\n");
+
+        GameResolver gameResolver = new GameResolver();
+        for (String gameString: gameStrings) {
+            gameResolver.addGame(Game.fromString(gameString));
+        }
+        return gameResolver;
     }
 
     public int resolve(Leg configuration) {
-        return -1;
+        int total = 0;
+        for (Game game: games) {
+            if (
+                game.getMaxOfBlueCubes() <= configuration.getNbBlue() &&
+                game.getMaxOfRedCubes() <= configuration.getNbRed() &&
+                game.getMaxOfGreenCubes() <= configuration.getNbGreen()
+            ) {
+                total += game.getId();
+            }
+        }
+        return total;
     }
 
     public List<Game> getGames() {
@@ -23,5 +41,19 @@ public class GameResolver {
     }
 
     public void addGame(Game game) {
+        games.add(game);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GameResolver that = (GameResolver) o;
+        return Objects.equals(games, that.games);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(games);
     }
 }

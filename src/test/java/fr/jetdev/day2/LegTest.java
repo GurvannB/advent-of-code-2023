@@ -3,6 +3,7 @@ package fr.jetdev.day2;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class LegTest {
     @Test
@@ -18,6 +19,6 @@ public class LegTest {
         String generation = "17 red, 9 blue";
         Leg leg = Leg.fromString(generation);
         Leg expected = new Leg(9, 17, 0);
-        assertEquals(expected, leg);
+        assertTrue(expected.equals(leg));
     }
 }
