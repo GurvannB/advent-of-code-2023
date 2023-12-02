@@ -5,6 +5,14 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class GameResolverTest {
+    private final String testGeneration = "Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green\n" +
+            "Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue\n" +
+            "Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red\n" +
+            "Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red\n" +
+            "Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green";
+
+    private final GameResolver testGameResolver = GameResolver.fromString(testGeneration);
+
     @Test
     public void should_init_game_resolver_with_empty_games() {
         GameResolver gameResolver = new GameResolver();
@@ -55,18 +63,17 @@ public class GameResolverTest {
 
     @Test
     public void should_generate_game_resolver_by_string() {
-        String generation = "Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green\n" +
-                "Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue\n" +
-                "Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red\n" +
-                "Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red\n" +
-                "Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green";
         GameResolver gameResolver = getGameResolver();
-        assertEquals(gameResolver, GameResolver.fromString(generation));
+        assertEquals(gameResolver, GameResolver.fromString(testGeneration));
     }
 
     @Test
-    public void should_resolve_game() {
-        GameResolver gameResolver = getGameResolver();
-        assertEquals(8, gameResolver.resolve(new Leg(14, 12, 13)));
+    public void should_resolve_game_for_part_one() {
+        assertEquals(8, testGameResolver.resolvePartOne(new Leg(14, 12, 13)));
+    }
+
+    @Test
+    public void should_resolve_game_for_part_two() {
+        assertEquals(2286, testGameResolver.resolvePartTwo());
     }
 }

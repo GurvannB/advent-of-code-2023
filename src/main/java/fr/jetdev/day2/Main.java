@@ -15,7 +15,7 @@ public class Main {
             line = reader.readLine();
         }
         GameResolver gameResolver = GameResolver.fromString(sb.toString());
-        int answer = gameResolver.resolve(new Leg(14, 12, 13));
+        int answer = gameResolver.resolvePartOne(new Leg(14, 12, 13));
         System.out.println("The answer is : "+answer);
     }
 }

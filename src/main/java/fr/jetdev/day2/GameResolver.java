@@ -22,7 +22,7 @@ public class GameResolver {
         return gameResolver;
     }
 
-    public int resolve(Leg configuration) {
+    public int resolvePartOne(Leg configuration) {
         int total = 0;
         for (Game game: games) {
             if (
@@ -34,6 +34,10 @@ public class GameResolver {
             }
         }
         return total;
+    }
+
+    public int resolvePartTwo() {
+        return -1;
     }
 
     public List<Game> getGames() {

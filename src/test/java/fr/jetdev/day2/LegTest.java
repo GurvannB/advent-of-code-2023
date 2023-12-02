@@ -21,4 +21,10 @@ public class LegTest {
         Leg expected = new Leg(9, 17, 0);
         assertTrue(expected.equals(leg));
     }
+
+    @Test
+    public void should_return_power_of_leg() {
+        assertEquals(36, new Leg(3, 4, 3).getPower());
+        assertEquals(1120, new Leg(8, 20, 7).getPower());
+    }
 }
