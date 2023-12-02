@@ -45,7 +45,7 @@ public class Leg {
     }
 
     public int getPower() {
-        return -1;
+        return getNbBlue() * getNbRed() * getNbGreen();
     }
 
     @Override

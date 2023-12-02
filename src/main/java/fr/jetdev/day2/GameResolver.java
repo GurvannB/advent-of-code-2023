@@ -37,7 +37,15 @@ public class GameResolver {
     }
 
     public int resolvePartTwo() {
-        return -1;
+        int total = 0;
+        for (Game game: games) {
+            total += new Leg(
+                    game.getMaxOfBlueCubes(),
+                    game.getMaxOfRedCubes(),
+                    game.getMaxOfGreenCubes()
+            ).getPower();
+        }
+        return total;
     }
 
     public List<Game> getGames() {
