@@ -90,7 +90,11 @@ public class Engine {
     }
 
     public int resolve() {
-        return -1;
+        int total = 0;
+        for (Integer i: getAdjacentToSymbolNumbers()) {
+            total += i;
+        }
+        return total;
     }
 
     @Override
