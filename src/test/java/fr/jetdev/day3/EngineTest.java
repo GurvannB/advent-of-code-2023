@@ -102,4 +102,10 @@ public class EngineTest {
         ArrayList<Integer> numbers = new ArrayList(List.of(467, 35, 633, 617, 592, 755, 664, 598));
         assertEquals(numbers, engine.getAdjacentToSymbolNumbers());
     }
+
+    @Test
+    public void should_resolve() {
+        Engine engine = Engine.fromString(stringGeneration);
+        assertEquals(4361, engine.resolve());
+    }
 }
