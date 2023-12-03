@@ -2,6 +2,10 @@ package fr.jetdev.day3;
 
 import org.junit.Test;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -58,7 +62,7 @@ public class EngineTest {
     @Test
     public void should_return_all_numbers() {
         Engine engine = Engine.fromString(stringGeneration);
-        PositionNumber[] numbers = new PositionNumber[]{
+        ArrayList<PositionNumber> numbers = new ArrayList<>(List.of(
                 new PositionNumber(0, 0, 467),
                 new PositionNumber(0, 5, 114),
                 new PositionNumber(2, 2, 35),
@@ -69,7 +73,33 @@ public class EngineTest {
                 new PositionNumber(7, 6, 755),
                 new PositionNumber(9, 1, 664),
                 new PositionNumber(9, 5, 598)
-        };
+        ));
         assertEquals(numbers, engine.getAllNumbers());
+    }
+
+    @Test
+    public void should_return_if_char_is_a_symbol() {
+        assertFalse(Engine.isSymbol('.'));
+        assertTrue(Engine.isSymbol('*'));
+        assertTrue(Engine.isSymbol('$'));
+        assertTrue(Engine.isSymbol('#'));
+        assertTrue(Engine.isSymbol('='));
+    }
+
+    @Test
+    public void should_return_a_character_for_a_position() {
+        Engine engine = Engine.fromString(stringGeneration);
+        assertEquals('4', (char) engine.get(0, 0));
+        assertEquals('*', (char) engine.get(1, 3));
+        assertEquals('$', (char) engine.get(8, 3));
+        assertEquals('+', (char) engine.get(5, 5));
+        assertEquals('#', (char) engine.get(3, 6));
+    }
+
+    @Test
+    public void get_adjacent_to_symbol_numbers() {
+        Engine engine = Engine.fromString(stringGeneration);
+        ArrayList<Integer> numbers = new ArrayList(List.of(467, 35, 633, 617, 592, 755, 664, 598));
+        assertEquals(numbers, engine.getAdjacentToSymbolNumbers());
     }
 }
